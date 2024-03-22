@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+</head>
+
+
+<body>
+    <script>
+        const produto = [];
+        var resp;
+        do {
+            resp = prompt("1-Adicionar Produto \n 2-Buscar  \n 3-Atualizar \n 4-Visualizar Todos os Produtos \n 5-Remover Produto \n 6-sair")
+            if (resp == 1) {
+                function cadastrar() {
+                    const nome = prompt("Digite o nome do produto: ");
+                    const cod = prompt("Digite o codigo do produto: ");
+                    produto.push({ nome, codigo: cod });
+                }
+                cadastrar();
+            } else if (resp == 2) {
+                const busca = prompt("Digite o codigo para busca: ");
+                produto.forEach(item => {
+                    if (item.codigo.includes(busca)) {
+                        alert(`${item.nome}/${item.codigo}`)
+                    }
+                })
+            } else if (resp == 3) {
+                const atualizar = prompt("Qual produto deseja atualizar ? ");
+                produto.forEach(item => {
+                    if (item.codigo.includes(atualizar)) {
+                        const nome = prompt("Digite o novo nome: ");
+                        item.nome = nome
+                        const cod = prompt("Digite o novo codigo: ");
+                        item.codigo = cod
+                    }
+                })
+            }
+            else if (resp == 4) {
+                function listarItens() {
+                    produto.forEach(item => {
+                        alert(`Nome: ${item.nome}, Codigo: ${item.codigo} `);
+                    });
+                }
+                listarItens();
+            }
+            else if (resp == 5) {
+                const deletar = prompt("Digite o código do produto que deseja remover: ");
+                produto.forEach((item, index) => {
+                    if (item.codigo === deletar) {
+                        produto.splice(index, 1);
+                        alert("Produto deletado com sucesso.");
+                    }
+                });
+            }
+        } while (resp != 6)
+    </script>
+</body>
+
+</html>
